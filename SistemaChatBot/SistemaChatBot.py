@@ -48,5 +48,12 @@ class SistemaChatBot:
         print(self.__bot.boas_vindas())
         
         ##entra no loop de mostrar comandos do bot e escolher comando do bot até o usuário definir a saída
-        for 
+        while True:
+            for key, value in self.__bot.mostra_comandos():
+                 print(f"{key} - {value}")
+                 
+            escolha = input("Digite o comando desejado (ou -1 p/ fechar o programa): ", end="")
+            
+            for key in self.__bot.mostra_comandos():
+            
         ##ao sair mostrar a mensagem de despedida do bot
