@@ -9,7 +9,6 @@ class BotEspelhado(Bot):
             "1": ("Bom Dia", "")
             "2": ("Qual o seu nome?", "")
             "3": ("Quero um conselho", "")
-            "4": ("Adeus", "")
         }
 
     # nao esquecer o decorator
@@ -23,7 +22,8 @@ class BotEspelhado(Bot):
         self.__nome = nome
 
     def apresentacao(self):
-        return "...odahlepse é olaf ue euq o odut ,odahlepsE toB o uos rorriM é emon uem ,álO" #fazer o nome ser printado utilizando o self.__nome espelhado
+        # fazer o nome ser printado utilizando o self.__nome espelhado
+        return "...odahlepse é olaf ue euq o odut ,odahlepsE toB o uos rorriM é emon uem ,álO"
 
     def mostra_comandos(self):
         return self.comandos
@@ -35,4 +35,4 @@ class BotEspelhado(Bot):
         return "...odnalaf uotse euq o rednetne arap amelborp ahnet oãn euq orepse ,uehlocse em êcov abO"
 
     def despedida(self):
-        return ""
+        return "...amixórp a éta ,raduja et redop mob otium ioF"
