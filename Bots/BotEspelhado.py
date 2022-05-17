@@ -4,10 +4,10 @@ from Bots.Bot import Bot
 
 class BotEspelhado(Bot):
     def __init__(self, nome):
-        self.__nome = nome
-        super().comandos = {
-            "1": ("Bom Dia", "")
-            "2": ("Qual o seu nome?", "")
+        self.nome = nome
+        self.comandos = {
+            "1": ("Bom Dia", ""),
+            "2": ("Qual o seu nome?", ""),
             "3": ("Quero um conselho", "")
         }
 
@@ -21,6 +21,10 @@ class BotEspelhado(Bot):
     def nome(self, nome):
         self.__nome = nome
 
+    #@property
+    #def comandos(self):
+        #return self.comandos
+        
     def apresentacao(self):
         # fazer o nome ser printado utilizando o self.__nome espelhado
         return "...odahlepse é olaf ue euq o odut ,odahlepsE toB o uos rorriM é emon uem ,álO"

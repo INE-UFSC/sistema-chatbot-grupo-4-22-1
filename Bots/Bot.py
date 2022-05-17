@@ -7,7 +7,7 @@ class Bot(ABC):
 
     def __init__(self, nome):
         self.__nome = nome
-        self.comandos = {}
+        #self.comandos = {}
 
     #nao esquecer o decorator
     @property

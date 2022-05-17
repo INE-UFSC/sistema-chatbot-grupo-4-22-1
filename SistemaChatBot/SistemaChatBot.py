@@ -3,12 +3,13 @@ from Bots.Bot import Bot
 class SistemaChatBot:
     def __init__(self, nomeEmpresa, lista_bots):
         self.__empresa = nomeEmpresa
+        self.__lista_bots = []
         
         ##verificar se a lista de bots contém apenas bots
         for bot in lista_bots:
-        	if bot is Bot:
-	        	self.__lista_bots.append(bot)
-	        	
+            if isinstance(bot, Bot):
+                self.__lista_bots.append(bot)
+
         self.__bot = None
     
     def boas_vindas(self):
@@ -17,13 +18,14 @@ class SistemaChatBot:
 
     def mostra_menu(self):
         print(f"Os chatBots disponíveis no momento são: ")
-        for bot in range(0, len(self.__lista_bots)-1):
-            print(f"str{i} - Bot: {bot.apresentacao()}")
+        for bot in range(0, len(self.__lista_bots)):
+            print(f"{bot} - Bot: {self.__lista_bots[bot].apresentacao()}")
         ##mostra o menu de escolha de bots
     
     def escolhe_bot(self):
-        ##faz a entrada de dados do usuário e atribui o objeto ao atributo __bot 
-        return(f"Digite o número do Bot escolhido: ", end="")
+        ##faz a entrada de dados do usuário e atribui o objeto ao atributo __bot
+        print("Digite o número do Bot escolhido: ", end="")
+        self.__bot = input() 
 
     def mostra_comandos_bot(self):
         pass
@@ -35,14 +37,13 @@ class SistemaChatBot:
 
     def inicio(self):
         ##mostra mensagem de boas-vindas do sistema
-				print(self.boas_vindas())
+        print(self.boas_vindas())
 				
         ##mostra o menu ao usuário
         self.mostra_menu()
         
         ##escolha do bot
-        print(self.escolhe_bot())
-        self.__bot = self.__lista_bots(input())
+        self.escolhe_bot()
         
         ##mostra mensagens de boas-vindas do bot escolhido
         print(self.__bot.boas_vindas())
@@ -54,6 +55,8 @@ class SistemaChatBot:
                  
             escolha = input("Digite o comando desejado (ou -1 p/ fechar o programa): ", end="")
             
-            for key in self.__bot.mostra_comandos():
+            for key, value in self.__bot.mostra_comandos().items():
+                if key == escolha:
+                     print(value)
             
         ##ao sair mostrar a mensagem de despedida do bot
