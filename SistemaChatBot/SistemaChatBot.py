@@ -62,5 +62,5 @@ class SistemaChatBot:
             for key, value in self.__bot.mostra_comandos().items():
                 if key == escolha:
                      print(value[1])
-            
         ##ao sair mostrar a mensagem de despedida do bot
+        print(self.__bot.despedida())
