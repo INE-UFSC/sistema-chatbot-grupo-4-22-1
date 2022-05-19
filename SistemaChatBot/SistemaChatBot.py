@@ -25,7 +25,7 @@ class SistemaChatBot:
     def escolhe_bot(self):
         ##faz a entrada de dados do usuário e atribui o objeto ao atributo __bot
         print("Digite o número do Bot escolhido: ", end="")
-        self.__bot = input() 
+        self.__bot = self.__lista_bots[int(input())]
 
     def mostra_comandos_bot(self):
         pass
@@ -50,13 +50,17 @@ class SistemaChatBot:
         
         ##entra no loop de mostrar comandos do bot e escolher comando do bot até o usuário definir a saída
         while True:
-            for key, value in self.__bot.mostra_comandos():
-                 print(f"{key} - {value}")
-                 
-            escolha = input("Digite o comando desejado (ou -1 p/ fechar o programa): ", end="")
+            for key, value in self.__bot.mostra_comandos().items():
+                 print(f"{key} - {value[0]}")
             
+            print("Digite o comando desejado (ou -1 p/ fechar o programa): ", end="")
+            escolha = input()
+            
+            if escolha == "-1":
+                break
+                
             for key, value in self.__bot.mostra_comandos().items():
                 if key == escolha:
-                     print(value)
+                     print(value[1])
             
         ##ao sair mostrar a mensagem de despedida do bot

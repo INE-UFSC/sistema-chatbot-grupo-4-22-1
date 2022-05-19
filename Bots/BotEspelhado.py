@@ -5,10 +5,10 @@ from Bots.Bot import Bot
 class BotEspelhado(Bot):
     def __init__(self, nome):
         self.nome = nome
-        self.comandos = {
-            "1": ("Bom Dia", ""),
-            "2": ("Qual o seu nome?", ""),
-            "3": ("Quero um conselho", "")
+        self.__comandos = {
+            "1": ("Bom Dia", "aiD moB"),
+            "2": ("Qual o seu nome?", "rorriM é emon ueM"),
+            "3": ("Quero um conselho", "ohlepse on rahlo oa airros erpmeS")
         }
 
     # nao esquecer o decorator
@@ -30,7 +30,7 @@ class BotEspelhado(Bot):
         return "...odahlepse é olaf ue euq o odut ,odahlepsE toB o uos rorriM é emon uem ,álO"
 
     def mostra_comandos(self):
-        return self.comandos
+        return self.__comandos
 
     def executa_comando(self, cmd):
         pass
