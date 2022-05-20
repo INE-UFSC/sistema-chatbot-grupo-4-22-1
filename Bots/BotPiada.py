@@ -12,11 +12,11 @@ class BotPiada(Bot):
 
     @property
     def nome(self):
-        pass
+        return self.__nome
 
     @nome.setter
     def nome(nome):
-        pass
+        self.__nome = nome
 
     def apresentacao(self):
         return("%s - Mensagem de apresentação: HAHAHAHAH, Meu nome é %s e você é um bananão!")
