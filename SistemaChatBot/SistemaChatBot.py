@@ -5,70 +5,66 @@ class SistemaChatBot:
         self.__empresa = nomeEmpresa
         self.__lista_bots = []
         
-        ##verificar se a lista de bots contém apenas bots
         for bot in lista_bots:
             if isinstance(bot, Bot):
                 self.__lista_bots.append(bot)
+            else:
+                print("ERRO: algum Bot não é Bot!")
 
         self.__bot = None
     
     def boas_vindas(self):
-        return(f"Olá, este é o sistema de chatBots da empresa {self.__empresa}!")
-        ##mostra mensagem de boas vindas do sistema
+        print(f"Olá, este é o sistema de chatBots da empresa {self.__empresa}!")
 
     def mostra_menu(self):
-        print(f"Os chatBots disponíveis no momento são: ")
-        for bot in range(0, len(self.__lista_bots)):
-            print(f"{bot} - Bot: {self.__lista_bots[bot].apresentacao()}")
-        ##mostra o menu de escolha de bots
+        print(f"Os chatBots disponíveis no momento são:\n")
+        for index, bot in enumerate(self.__lista_bots):
+            print(f"{index} - {bot.nome}: {bot.apresentacao()}")
     
     def escolhe_bot(self):
-        ##faz a entrada de dados do usuário e atribui o objeto ao atributo __bot
         while True:
-            print("Digite o número do Bot escolhido: ", end="")
-            escolha = int(input())
+            escolha = input("Digite o número do Bot escolhido:\n")
             
-            if escolha > len(self.__lista_bots) or escolha < 0:
-		            print("Escolha inválida! Tente novamente")
+            try:
+                escolha = int(escolha)
+            except ValueError:
+                print("\nDigite somente números!\n")
             else:
-		            self.__bot = self.__lista_bots[int(escolha)]
-		            break
-		      	
+                if escolha > len(self.__lista_bots) or escolha < 0:
+		                print("Escolha inválida! Tente novamente!")
+                else:
+		                self.__bot = self.__lista_bots[int(escolha)]
+		                break
 
     def mostra_comandos_bot(self):
-        ##mostra os comandos disponíveis no bot escolhido
-        for key, value in self.__bot.mostra_comandos().items():
-                 print(f"{key} - {value[0]}")
+        # só chamar o mostrar do Bot
+        self.__bot.mostra_comandos()
 
     def le_envia_comando(self):
-        ##faz a entrada de dados do usuário e executa o comando no bot ativo
-        print("Digite o comando desejado (ou -1 p/ fechar o programa): ", end="")
-        escolha = input()
+        escolha = input("Digite o comando desejado (ou -1 p/ fechar o programa):\n")
         
         if escolha == "-1":
             return False
-            
-        for key, value in self.__bot.mostra_comandos().items():
-            if key == escolha:
-                 print("\n", value[1], "\n")
+        
+        if escolha in self.__bot.mostra_comandos().keys():
+            print("\n", self.__bot.mostra_comandos()[escolha][1], "\n")
+            # chamar o executa comando do Bot
+        else:
+            print("\nEscolha inválida! Tente novamente!\n")
 
-    def inicio(self):
-        ##mostra mensagem de boas-vindas do sistema
-        print(self.boas_vindas())
-				
-        ##mostra o menu ao usuário
-        self.mostra_menu()
-        
-        ##escolha do bot
-        self.escolhe_bot()
-        
-        ##mostra mensagens de boas-vindas do bot escolhido
-        print("\n", self.__bot.boas_vindas(), "\n")
-        
-        ##entra no loop de mostrar comandos do bot e escolher comando do bot até o usuário definir a saída
+    def escolher_comando(self):
         while True:
             self.mostra_comandos_bot()
             if self.le_envia_comando() == False:
                 break
-        ##ao sair mostrar a mensagem de despedida do bot
+
+    def inicio(self):
+        self.boas_vindas()
+        self.mostra_menu()
+        self.escolhe_bot()
+        
+        print("\n", self.__bot.boas_vindas(), "\n")
+        
+        self.escolher_comando()
+
         print("\n", self.__bot.despedida())

@@ -7,20 +7,29 @@ class Bot(ABC):
 
     def __init__(self, nome):
         self.__nome = nome
-        #self.comandos = {}
+        self.__comandos = {}
 
     #nao esquecer o decorator
     @property
     def nome(self):
-        pass 
+        return self.__nome 
 
     #nao esquecer o decorator
     @nome.setter
-    def nome(self, nome):
-        pass
+    def nome(nome):
+        self.__nome = nome
+
+    @property
+    def comandos(self):
+        return self.__comandos 
+        
+    @comandos.setter
+    def comandos(comandos):
+        self.__comandos = comandos
 
     def mostra_comandos(self):
-        pass
+        for key, value in self.__comandos.items():
+            print(f"{key} - {value[0]}")
 
     @abstractmethod
     def executa_comando(self, cmd):

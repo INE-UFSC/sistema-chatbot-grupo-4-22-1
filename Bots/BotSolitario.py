@@ -2,21 +2,13 @@ from Bots.Bot import Bot
 
 class BotSolitario(Bot):
     def __init__(self,nome):
-        self.__nome = nome
-        self.__comandos = {
+        super().__init__(nome)
+        self.comandos({
             "1": ("Bom dia", "Bom dia, amigo!!!"),
             "2": ("Qual o seu nome?", "Ah, desculpa, eu não lembro... faz muito tempo que não me perguntam meu nome... mas pode me chamar de Sozinho!"),
-            "3": ("Quero um conselho", "Uhm... eu não sou muito bom com pessoas, mas sempre valorize seus amigos! Você nunca sabe quando eles vão te deixar.") }
-
-    #nao esquecer o decorator
-    @property
-    def nome(self):
-        return self.__nome
-
-    #nao esquecer o decorator
-    @nome.setter
-    def nome(nome):
-        self.__nome = nome
+            "3": ("Quero um conselho", "Uhm... eu não sou muito bom com pessoas, mas sempre valorize seus amigos! Você nunca sabe quando eles vão te deixar.") })
+        
+        
 
     def apresentacao(self):
         return "Ah- Oi... eu sou o Sozinho, e gostaria muito de ser seu amigo"
