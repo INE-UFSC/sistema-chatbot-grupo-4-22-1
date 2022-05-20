@@ -23,38 +23,33 @@ class SistemaChatBot:
     
     def escolhe_bot(self):
         while True:
-            escolha = input("Digite o número do Bot escolhido:\n")
+            escolha = input("Digite o número do Bot escolhido: ")
             
             try:
                 escolha = int(escolha)
             except ValueError:
                 print("\nDigite somente números!\n")
             else:
-                if escolha > len(self.__lista_bots) or escolha < 0:
+                if escolha >= len(self.__lista_bots) or escolha < 0:
 		                print("Escolha inválida! Tente novamente!")
                 else:
 		                self.__bot = self.__lista_bots[int(escolha)]
 		                break
 
-    def mostra_comandos_bot(self):
-        # só chamar o mostrar do Bot
-        self.__bot.mostra_comandos()
-
     def le_envia_comando(self):
-        escolha = input("Digite o comando desejado (ou -1 p/ fechar o programa):\n")
+        escolha = input("Digite o comando desejado (ou -1 p/ fechar o programa): ")
         
         if escolha == "-1":
             return False
         
-        if escolha in self.__bot.mostra_comandos().keys():
-            print("\n", self.__bot.mostra_comandos()[escolha][1], "\n")
-            # chamar o executa comando do Bot
+        if escolha in self.__bot.comandos.keys():
+            print("\n", self.__bot.comandos[escolha][1], "\n")
         else:
             print("\nEscolha inválida! Tente novamente!\n")
 
     def escolher_comando(self):
         while True:
-            self.mostra_comandos_bot()
+            self.__bot.mostra_comandos()
             if self.le_envia_comando() == False:
                 break
 
@@ -62,9 +57,6 @@ class SistemaChatBot:
         self.boas_vindas()
         self.mostra_menu()
         self.escolhe_bot()
-        
-        print("\n", self.__bot.boas_vindas(), "\n")
-        
+        self.__bot.boas_vindas()
         self.escolher_comando()
-
-        print("\n", self.__bot.despedida())
+        self.__bot.despedida()
